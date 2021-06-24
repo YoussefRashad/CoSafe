@@ -11,18 +11,18 @@ app.use(express.json())
 // Access API
 // https://co-safe.netlify.app
 // origin:['http://localhost:3000','http://127.0.0.1:3000']
-const URL = process.env.FE_URL || "http://localhost:3000"
-app.use(cors({
-    origin:[URL, URL],
-    credentials: true
-}))
-app.use((req, res, next)=>{
-    res.header('Access-Control-Allow-Origin', URL);
-    res.header('Access-Control-Allow-Headers', true);
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    next()
-})
+// const URL = process.env.FE_URL || "http://localhost:3000"
+// app.use(cors({
+//     origin:[URL, URL],
+//     credentials: true
+// }))
+// app.use((req, res, next)=>{
+//     res.header('Access-Control-Allow-Origin', URL);
+//     res.header('Access-Control-Allow-Headers', true);
+//     res.header('Access-Control-Allow-Credentials', true);
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     next()
+// })
 
 
 // Routers
