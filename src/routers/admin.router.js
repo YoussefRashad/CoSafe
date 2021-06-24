@@ -2,7 +2,6 @@
 const router = require('express').Router()
 const Admin = require('../models/admin.model')
 const authAdmin = require('../middlewares/authAdmin')
-//const { sendPasswordVerificationCode } = require('../emails/mailer')
 const { generateToken } = require('../Utils/Helpers')
 const { sendPasswordVerificationCode } = require('../emails/mailer')
 const bcrypt = require('bcrypt')
@@ -70,9 +69,8 @@ router.post('/addnewadmin', async (req, res) => {
             })
         }
         const admin = new Admin({ ...req.body })
-        //const token = await admin.generateAuthToken()
         await admin.save()
-        res.status(200).send({ admin/*, token*/ })
+        res.status(200).send({ admin })
     } catch (error) {
         res.status(500).send({error: error.message})
     }
@@ -120,7 +118,6 @@ router.patch('/:id',/* authAdmin, */ async (req, res) => {
 router.delete('/:id',/* authAdmin, */ async (req, res) => {
     const { id } = req.params
     try {
-        //await req.admin.remove()
         await Admin.findByIdAndDelete(id)
         res.status(200).send()
     } catch (error) {
@@ -131,7 +128,6 @@ router.delete('/:id',/* authAdmin, */ async (req, res) => {
 // to logout from a device
 router.post('/logout', authAdmin, async (req, res) => {
     try {
-        //req.admin.tokens = req.admin.tokens.filter(token => token !== req.token)
         req.admin.tokens = req.admin.tokens.filter(token => req.token !== token.token)
         await req.admin.save()
         res.status(200).send({msg:"the admin logged out"})
@@ -152,22 +148,6 @@ router.post('/logout-all', authAdmin, async (req, res) => {
 })
   
   router.post('/password/forget', async (req, res) => {
-    /*
-    const email = req.body
-    const admin = await Admin.findOne({ email })
-    if (!admin) {
-      res.status(400).send("not find doctor")
-    }
-    if (admin.passwordResetToken) {
-      sendPasswordVerificationCode(admin.email, admin.name, admin.passwordResetToken, 'admin')
-    } else {
-      const code = await generateToken()
-      admin.passwordResetToken = code
-      sendPasswordVerificationCode(admin.email, admin.name, code)
-      await admin.save()
-    }
-    res.status(200).send()
-    */
     const admin = await Admin.findOne({ email: req.body.email })
     if (!admin){
       return res.status(404).send("admin is not found")
@@ -183,20 +163,6 @@ router.post('/logout-all', authAdmin, async (req, res) => {
   })
   
   router.post('/password/code/verification', async (req, res) => {
-    /*
-    const code = req.params.code
-    if (!code) {
-      res.status(400).send("code error")
-    }
-    const admin = await Admin.findOne({ passwordResetToken: code })
-    if (!admin) {
-      res.status(400).send("not find admin")
-    }
-    admin.changePassword = true
-    admin.passwordResetToken = undefined
-    await admin.save()
-    res.status(200).send()
-    */
     const { verificationCode, email } = req.body
     try {
       const admin = await Admin.findOne({ email })
