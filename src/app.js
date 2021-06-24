@@ -45,6 +45,9 @@ app.use('/user/client/notification', notificationRouter)
 app.use("/conversations", conversationRoute);
 app.use("/messages", messageRoute);
 
+router.get('/test', (req, res) => {
+    return res.send("test api")
+})
 
 // No route matched, 404 not found
 app.use((req, res, next)=>{
