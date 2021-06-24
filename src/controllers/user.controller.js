@@ -1,6 +1,6 @@
 
 const User = require('../models/user.model')
-const { generateToken } = require('../Utils/hselpers')
+const { generateToken } = require('../Utils/helpers')
 
 const getUsers = async (req, res) => {
     try {
