@@ -3,7 +3,7 @@ const router = require('express').Router()
 const User = require('../models/user.model')
 const authUser = require('../middlewares/authUser')
 //const { sendPasswordVerificationCode } = require('../emails/mailer')
-const { generateToken } = require('../Utils/Helpers')
+const { generateToken } = require('../Utils/helpers')
 const bcrypt = require('bcrypt')
 
 // to get all users 
