@@ -3,7 +3,6 @@ const JWT = require('jsonwebtoken')
 const signatureToken = process.env.ADMIN_TOKEN || 'thisismytokensignatureforADMIN'
 
 const auth = async (req, res, next) => {
-    //const token  = req.header('Authorization').replace('Bearer ', '')
     const token = req.body.token
     const decode = JWT.verify(token, signatureToken)
     if(!decode){

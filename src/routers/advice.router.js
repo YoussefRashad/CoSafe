@@ -4,9 +4,6 @@ const Advice = require('../models/advice.model')
 const authAdmin = require('../middlewares/authAdmin')
 
 // to get all advices
-/*
-    Pagination
-*/
 router.get('/', async (req, res) => {
     try {
         const advices = await Advice.find()
@@ -43,14 +40,6 @@ router.post('/', async (req, res) => {
 
 // to edit an advice
 router.patch('/:id', async (req, res) => {
-    /*
-    const updates = Object.keys(req.body)
-    const allowedUpdates = []
-    const isAllowed = updates.every(update => allowedUpdates.includes(update))
-    if(!isAllowed){
-        throw new Error()
-    }
-    */
     const updates = Object.keys(req.body)
     const {id} = req.params
     console.log("req.body : ",req.body)

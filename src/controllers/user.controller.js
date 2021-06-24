@@ -25,7 +25,6 @@ const getUserByAdmin = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    //res.status(200).send(req.user)
     try {
         res.status(200).send(req.user)
       } catch (error) {
@@ -76,13 +75,6 @@ const logoutFromAllDevices = async (req, res) => {
 
 const editUserByAdmin = async (req, res) => {
     const updates = Object.keys(req.body)
-    /*
-    const allowedUpdates = [] // allowed updates for admin
-    const isAllowed = updates.every(update => allowedUpdates.includes(update))
-    if (!isAllowed) {
-        throw new Error()
-    }
-    */
     const id = req.params.id
     try {
         const user = await User.findById(id)
@@ -136,14 +128,6 @@ const deleteUser = async (req, res) => {
 }
 
 const addInfectedPatient = async (req, res) => {
-    /*
-    const { id } = req.params
-    try {
-        const user = await User.findById(id)
-        if(!user){
-            return res.status(404).send('not found')
-        }
-    */
    try{
     const exist = await User.findOne({email : req.body.email})
 
