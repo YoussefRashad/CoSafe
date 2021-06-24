@@ -1,6 +1,5 @@
 const sgMail = require('@sendgrid/mail')
 
-//sgMail.setApiKey('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')
 sgMail.setApiKey('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')
 
 const sendPasswordVerificationCode = (email, firstName, type, verificationCode)=>{

@@ -69,22 +69,6 @@ router.post('/uninfected/add', authUser, addUnInfectedUser)
 
 // password forget
 router.post('/password/forget', async (req, res) => {
-    /*
-    const email = req.body
-    const admin = await Admin.findOne({ email })
-    if (!admin) {
-      res.status(400).send("not find doctor")
-    }
-    if (admin.passwordResetToken) {
-      sendPasswordVerificationCode(admin.email, admin.name, admin.passwordResetToken, 'admin')
-    } else {
-      const code = await generateToken()
-      admin.passwordResetToken = code
-      sendPasswordVerificationCode(admin.email, admin.name, code)
-      await admin.save()
-    }
-    res.status(200).send()
-    */
     const user = await User.findOne({ email: req.body.email })
     if (!user){
       return res.status(404).send("user is not found")
@@ -100,20 +84,6 @@ router.post('/password/forget', async (req, res) => {
   })
   
   router.post('/password/code/verification', async (req, res) => {
-    /*
-    const code = req.params.code
-    if (!code) {
-      res.status(400).send("code error")
-    }
-    const admin = await Admin.findOne({ passwordResetToken: code })
-    if (!admin) {
-      res.status(400).send("not find admin")
-    }
-    admin.changePassword = true
-    admin.passwordResetToken = undefined
-    await admin.save()
-    res.status(200).send()
-    */
     const { verificationCode, email } = req.body
     try {
       const user = await User.findOne({ email })
