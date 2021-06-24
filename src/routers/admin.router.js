@@ -2,7 +2,7 @@
 const router = require('express').Router()
 const Admin = require('../models/admin.model')
 const authAdmin = require('../middlewares/authAdmin')
-const { generateToken } = require('../Utils/Helpers')
+const { generateToken } = require('../Utils/helpers')
 const { sendPasswordVerificationCode } = require('../emails/mailer')
 const bcrypt = require('bcrypt')
 
