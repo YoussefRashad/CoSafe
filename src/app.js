@@ -45,7 +45,7 @@ app.use('/user/client/notification', notificationRouter)
 app.use("/conversations", conversationRoute);
 app.use("/messages", messageRoute);
 
-router.get('/test', (req, res) => {
+app.get('/test', (req, res) => {
     return res.send("test api")
 })
 
