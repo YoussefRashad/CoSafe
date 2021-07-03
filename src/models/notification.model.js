@@ -23,14 +23,10 @@ const notificationSchema = mongoose.Schema({
     date: {
         type: Date,
         default: new Date().toLocaleString()
-    },
-    // owner: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'User',
-    //     autopopulate: { select: "firstName lastName" },
-    // }
-})
+    }
+},{
+    timestamps: true
+});
 
 const notificationModel = mongoose.model('Notification', notificationSchema)
 

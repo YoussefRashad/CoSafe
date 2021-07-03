@@ -71,34 +71,6 @@ const userSchema = mongoose.Schema({
         required: [true, 'phone number is required!'],
         trim: true
     },
-    notifications:[{
-    /**
-    * Notification is work when i find an infected one or when i met uninfected and become infected
-    * Notification is for one user
-    */
-        notification:{
-            title: {
-                type: String,
-                required: [true, 'title is required!'],
-                trim: true
-            },
-            message: {
-                type: String,
-                required: [true, 'message is required!'],
-                trim: true
-            },
-            icon: {
-                type: String,
-                required: [true, 'icon is required!']
-            },
-            date: {
-                type: Date,
-                default: new Date().toLocaleString()
-            },
-            required: false,
-            select: false
-        }
-    }],
     tokens: [{
         token: {
             type: String,
