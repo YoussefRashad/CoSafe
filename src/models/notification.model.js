@@ -17,21 +17,16 @@ const notificationSchema = mongoose.Schema({
         required: [true, 'message is required!'],
         trim: true
     },
-    icon: {
-        type: String,
-        required: [true, 'icon is required!']
+    userId : {
+        type: String
     },
     date: {
         type: Date,
         default: new Date().toLocaleString()
-    },
-    // owner: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     required: true,
-    //     ref: 'User',
-    //     autopopulate: { select: "firstName lastName" },
-    // }
-})
+    }
+},{
+    timestamps: true
+});
 
 const notificationModel = mongoose.model('Notification', notificationSchema)
 
